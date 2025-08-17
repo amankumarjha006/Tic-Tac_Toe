@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+  background: #0D0D0D; /* dark base */
+  font-family: 'Segoe UI', sans-serif;
+  color: #FFF;
+}
+main {
+  padding: 20px;
+}
+h1 {
+  font-size: clamp(28px, 6vw, 50px);
+  font-weight: bold;
+  background: linear-gradient(90deg, #00FFFF, #9D4EDD, #FF2E63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.player-box {
+  font-size: clamp(20px, 4vw, 40px);
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  text-align: center;
+}
+.player1 span {
+  color: #00FFFF;
+  text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
+}
+.player2 span {
+  color: #FF2E63;
+  text-shadow: 0 0 10px #FF2E63, 0 0 20px #FF2E63;
+}
+
+/* Game board */
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vmin;
+  width: min(90vmin, 400px);
+  height: min(90vmin, 400px);
+}
+.box {
+  aspect-ratio: 1 / 1; /* always square */
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  background-color: #1A1A1A;
+  border: none;
+  border-radius: 12px;
+  color: #FFF;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF;
+  box-shadow: 0 0 10px #222;
+  transition: transform 0.25s, box-shadow 0.25s;
+  transform-origin: center;
+}
+.box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00FFFF, 0 0 40px #FF2E63;
+}
+.box:active {
+  transform: scale(0.95);
+}
+
+/* Button section */
+.btn {
+  display: flex;
+  justify-content: center;
+}
+#btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  border: none;
+  background: #9D4EDD;
+  color: #FFF;
+  font-size: clamp(14px, 4vw, 18px);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px #9D4EDD, 0 0 30px #9D4EDD;
+  transition: transform 0.2s, background 0.3s;
+}
+#btn:hover {
+  transform: scale(1.08);
+  background: #7B2CBF;
+  box-shadow: 0 0 25px #9D4EDD, 0 0 50px #9D4EDD;
+}
+#btn:active {
+  transform: scale(0.95);
+}
+
+/* Winner message */
+#msg {
+  font-size: clamp(20px, 5vw, 30px);
+  font-weight: bold;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #00FFFF, #9D4EDD, #FF2E63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+.hide {
+  display: none;
+}
+
+/* 📱 Mobile-specific tweaks */
+@media (max-width: 600px) {
+  .container {
+    gap: 1.5rem;
+  }
+  .player-box {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* 📱 Touch-friendly */
+@media (hover: none) and (pointer: coarse) {
+  .box {
+    min-height: 20vmin;
+    min-width: 20vmin;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    box-shadow: 0 0 15px #222;
+    transform: none !important;
+  }
+  .box:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 25px #00FFFF, 0 0 40px #FF2E63;
+  }
+  #btn {
+    padding: 1rem 2.5rem;
+    font-size: clamp(16px, 5vw, 20px);
+  }
+  #btn:hover {
+    transform: none;
+  }
+  #btn:active {
+    transform: scale(0.97);
+  }
+}
